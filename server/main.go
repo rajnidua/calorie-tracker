@@ -8,7 +8,7 @@ import("os"
 
 func main(){
 	port := os.Getenv("PORT")
-	if port =="{
+	if port ==""{
 		port = "8000"
 }
 
@@ -18,7 +18,7 @@ router.Use(cors.Default())
 
 router.POST("/entry/create",routes.AddEntry)
 router.GET("/enteries",routes.GetEntries)
-router.GET("/entry/:id/",routes.EntryByID)
+router.GET("/entry/:id/",routes.GetEntryByID)
 router.GET("ingredient/:ingredient",routes.GetEnteriesByIngredient)
 
 router.PUT("/entry/update/:id",routes.UpdateEntry)
