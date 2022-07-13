@@ -59,7 +59,23 @@ defer cancel(
 }
 
 func GetEnteriesByIngredient(c *gin.Context){
-
+ingredient:=c.Params.ByName("id")
+var ctx,cancel= context.withTimeout(context.Background((),100*time.Second))
+var enteries []bson.M
+cursor,err := entryCollection.Find(ctx,bson.M{"ingredients":ingredient})
+err!:=nil{
+	c.JSON(http.statusInternalServerError,gin.H{"error":err.Error()})
+	fmt.Println(err)
+	return
+}
+if err =	cursor.All(ctx,&enteries); err!=nil{
+	c.JSON(http.StatusInternalServer,gin.H{"error":err.Error()})
+	fmt.Println(err)
+	return
+}
+defer cancel()
+fmt.Println(enteries)
+c.JSON(http.statusOK,enteries)
 }
 
 func GetEntryById(c *gin.Context){
