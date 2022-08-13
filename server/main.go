@@ -25,3 +25,4 @@ router.PUT("/entry/update/:id",routes.UpdateEntry)
 router.PUT("/ingredient/update/:id",routes.UpdateIngredients)
 router.DELETE("/entry/delete/:id",routes.DeleteEntry)
 router.RUN(":"+port)
+}
